@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cefre7vdn21at"]
+
+[ext_resource type="Texture2D" uid="uid://cgpglbayw5nnk" path="res://icon.svg" id="1_wtcfe"]
+[ext_resource type="Script" uid="uid://cbuotih4v1bw2" path="res://icon.gd" id="2_0e48y"]
+[ext_resource type="PackedScene" uid="uid://c7ujm3f6w2g07" path="res://paddle.tscn" id="3_epypp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0e48y"]
+font_size = 20
+
+[node name="Root" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 188.0
+offset_top = 80.0
+offset_right = 364.0
+offset_bottom = 108.0
+text = "This is some label!"
+label_settings = SubResource("LabelSettings_0e48y")
+
+[node name="Icon" type="Sprite2D" parent="Label"]
+position = Vector2(64, 103)
+texture = ExtResource("1_wtcfe")
+script = ExtResource("2_0e48y")
+
+[node name="paddle0" parent="." instance=ExtResource("3_epypp")]

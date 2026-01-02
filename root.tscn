@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://b66msut7c8v70"]
+
+[ext_resource type="Texture2D" uid="uid://cgpglbayw5nnk" path="res://icon.svg" id="1_vvh5c"]
+[ext_resource type="Script" uid="uid://cbuotih4v1bw2" path="res://icon.gd" id="2_28aoi"]
+[ext_resource type="PackedScene" uid="uid://c7ujm3f6w2g07" path="res://paddle.tscn" id="3_jnlp7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0e48y"]
+font_size = 20
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vvh5c"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_28aoi"]
+friction = 0.0
+bounce = 1.0
+
+[node name="Root" type="Node2D"]
+
+[node name="Title" type="Label" parent="."]
+offset_left = 255.0
+offset_top = 11.0
+offset_right = 431.0
+offset_bottom = 39.0
+text = "This is some label!"
+label_settings = SubResource("LabelSettings_0e48y")
+
+[node name="Icon" type="Sprite2D" parent="Title"]
+position = Vector2(89, 106)
+texture = ExtResource("1_vvh5c")
+script = ExtResource("2_28aoi")
+
+[node name="paddle0" parent="." instance=ExtResource("3_jnlp7")]
+position = Vector2(620, 230)
+physics_material_override = SubResource("PhysicsMaterial_vvh5c")
+
+[node name="paddle1" parent="." instance=ExtResource("3_jnlp7")]
+position = Vector2(20, 230)
+physics_material_override = SubResource("PhysicsMaterial_28aoi")

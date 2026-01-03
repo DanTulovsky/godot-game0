@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://bflag4d367eh3"]
+
+[ext_resource type="Texture2D" uid="uid://cgpglbayw5nnk" path="res://icon.svg" id="1_f7c78"]
+[ext_resource type="Script" uid="uid://cbuotih4v1bw2" path="res://icon.gd" id="2_b40ck"]
+[ext_resource type="Script" uid="uid://de5elqbw1wcn3" path="res://start_button.gd" id="3_b40ck"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7tdrv"]
+font_size = 20
+
+[node name="HUDLayer" type="CanvasLayer"]
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -88.0
+offset_right = 88.0
+offset_bottom = 28.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "This is some label!"
+label_settings = SubResource("LabelSettings_7tdrv")
+vertical_alignment = 1
+
+[node name="Icon" type="Sprite2D" parent="Title"]
+position = Vector2(88, 104)
+texture = ExtResource("1_f7c78")
+script = ExtResource("2_b40ck")
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 941.0
+offset_top = 223.99998
+offset_right = 1020.0
+offset_bottom = 254.99998
+scale = Vector2(2.3529553, 2.3160932)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Start Ball"
+script = ExtResource("3_b40ck")
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="StartButton"]
+autostart = true

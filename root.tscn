@@ -1,34 +1,31 @@
-[gd_scene load_steps=11 format=3 uid="uid://b66msut7c8v70"]
+[gd_scene load_steps=9 format=3 uid="uid://b66msut7c8v70"]
 
 [ext_resource type="Script" uid="uid://d0hjd3h1ms6b0" path="res://root.gd" id="1_bf3um"]
-[ext_resource type="Texture2D" uid="uid://cgpglbayw5nnk" path="res://icon.svg" id="1_vvh5c"]
-[ext_resource type="Script" uid="uid://cbuotih4v1bw2" path="res://icon.gd" id="2_28aoi"]
 [ext_resource type="PackedScene" uid="uid://c7ujm3f6w2g07" path="res://paddle.tscn" id="3_jnlp7"]
 [ext_resource type="Script" uid="uid://dx0g0sec2e3mh" path="res://paddle.gd" id="4_28aoi"]
 [ext_resource type="PackedScene" uid="uid://b73523ncwdktd" path="res://ball.tscn" id="5_jnlp7"]
 [ext_resource type="Script" uid="uid://1qf06guvih8f" path="res://ball.gd" id="6_l8v81"]
-[ext_resource type="Script" uid="uid://de5elqbw1wcn3" path="res://start_button.gd" id="7_vyht1"]
+[ext_resource type="PackedScene" uid="uid://bflag4d367eh3" path="res://hud_layer.tscn" id="8_bf3um"]
 [ext_resource type="PackedScene" uid="uid://cdux3qd5cklf6" path="res://wall.tscn" id="9_huihk"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_0e48y"]
-font_size = 20
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vyht1"]
+lifetime_randomness = 0.72
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 12.44
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 98, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+scale_max = 12.759999
+scale_over_velocity_max = 10.0
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.99999994
 
 [node name="Root" type="Node2D"]
 script = ExtResource("1_bf3um")
-
-[node name="Title" type="Label" parent="."]
-offset_left = 941.0
-offset_top = 33.0
-offset_right = 1117.0
-offset_bottom = 61.0
-text = "This is some label!"
-label_settings = SubResource("LabelSettings_0e48y")
-metadata/_edit_use_anchors_ = true
-
-[node name="Icon" type="Sprite2D" parent="Title"]
-position = Vector2(89, 106)
-texture = ExtResource("1_vvh5c")
-script = ExtResource("2_28aoi")
 
 [node name="paddle0" parent="." groups=["paddles"] instance=ExtResource("3_jnlp7")]
 position = Vector2(1960, 778)
@@ -45,22 +42,20 @@ script = ExtResource("4_28aoi")
 position = Vector2(1043, 778)
 script = ExtResource("6_l8v81")
 
-[node name="StartButton" type="Button" parent="."]
-offset_left = 941.0
-offset_top = 223.99998
-offset_right = 1020.0
-offset_bottom = 254.99998
-scale = Vector2(2.3529553, 2.3160932)
-text = "Start Ball"
-script = ExtResource("7_vyht1")
-metadata/_edit_use_anchors_ = true
-
-[node name="Timer" type="Timer" parent="StartButton"]
-autostart = true
-
 [node name="BottomWall" parent="." instance=ExtResource("9_huihk")]
 position = Vector2(0, 1560)
 
 [node name="TopWall" parent="." instance=ExtResource("9_huihk")]
 
-[connection signal="pressed" from="StartButton" to="Ball" method="_on_start_button_pressed"]
+[node name="HUDLayer" parent="." instance=ExtResource("8_bf3um")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(1032, 1280)
+amount = 20
+lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_vyht1")
+
+[connection signal="pressed" from="HUDLayer/StartButton" to="Ball" method="_on_start_button_pressed"]
+
+[editable path="HUDLayer"]

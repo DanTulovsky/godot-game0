@@ -1,15 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://b73523ncwdktd"]
+[gd_scene load_steps=3 format=3 uid="uid://b73523ncwdktd"]
 
 [ext_resource type="Texture2D" uid="uid://xc6upkqffctq" path="res://ball2.png" id="1_x8fbi"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_x8fbi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cbx31"]
 radius = 20.0
 
-[node name="Ball" type="AnimatableBody2D"]
-physics_material_override = SubResource("PhysicsMaterial_x8fbi")
-sync_to_physics = false
+[node name="Ball" type="CharacterBody2D"]
+motion_mode = 1
+wall_min_slide_angle = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cbx31")

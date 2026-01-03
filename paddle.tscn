@@ -10,7 +10,9 @@ width = 10
 height = 100
 noise = SubResource("FastNoiseLite_ut3sq")
 
-[node name="paddle" type="Area2D"]
+[node name="paddle" type="CharacterBody2D"]
+motion_mode = 1
+wall_min_slide_angle = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ut3sq")

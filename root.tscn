@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b66msut7c8v70"]
+[gd_scene load_steps=7 format=3 uid="uid://b66msut7c8v70"]
 
 [ext_resource type="Script" uid="uid://d0hjd3h1ms6b0" path="res://root.gd" id="1_bf3um"]
 [ext_resource type="PackedScene" uid="uid://c7ujm3f6w2g07" path="res://paddle.tscn" id="3_jnlp7"]
-[ext_resource type="Script" uid="uid://dx0g0sec2e3mh" path="res://paddle.gd" id="4_28aoi"]
 [ext_resource type="PackedScene" uid="uid://b73523ncwdktd" path="res://ball.tscn" id="5_jnlp7"]
-[ext_resource type="Script" uid="uid://1qf06guvih8f" path="res://ball.gd" id="6_l8v81"]
 [ext_resource type="PackedScene" uid="uid://bflag4d367eh3" path="res://hud_layer.tscn" id="8_bf3um"]
 [ext_resource type="PackedScene" uid="uid://cdux3qd5cklf6" path="res://wall.tscn" id="9_huihk"]
 
@@ -30,17 +28,14 @@ script = ExtResource("1_bf3um")
 [node name="paddle0" parent="." groups=["paddles"] instance=ExtResource("3_jnlp7")]
 position = Vector2(1960, 778)
 scale = Vector2(2, 2)
-script = ExtResource("4_28aoi")
 is_player = true
 
 [node name="paddle1" parent="." groups=["paddles"] instance=ExtResource("3_jnlp7")]
 position = Vector2(92, 778)
 scale = Vector2(2, 2)
-script = ExtResource("4_28aoi")
 
 [node name="Ball" parent="." instance=ExtResource("5_jnlp7")]
 position = Vector2(1043, 778)
-script = ExtResource("6_l8v81")
 
 [node name="BottomWall" parent="." instance=ExtResource("9_huihk")]
 position = Vector2(0, 1560)

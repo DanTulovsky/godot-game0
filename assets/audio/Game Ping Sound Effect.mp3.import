@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dmee8eqgxqgqm"
+path="res://.godot/imported/Game Ping Sound Effect.mp3-ca97af1ef9bcd061164a16da1a9c8377.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Game Ping Sound Effect.mp3"
+dest_files=["res://.godot/imported/Game Ping Sound Effect.mp3-ca97af1ef9bcd061164a16da1a9c8377.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

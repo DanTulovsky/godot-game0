@@ -51,6 +51,7 @@ func _physics_process(delta):
 
 	if collision:
 		var collider = collision.get_collider()
+		play_collision_sound()
 
 		if collider.is_in_group("paddles"):
 			# Add some of the paddle's velocity to influence angle
@@ -61,3 +62,6 @@ func _physics_process(delta):
 			# Normal bounce for walls
 			velocity = velocity.bounce(collision.get_normal())
 			velocity = velocity.normalized() * current_speed
+
+func play_collision_sound():
+	$AudioStreamPlayer2D.play()

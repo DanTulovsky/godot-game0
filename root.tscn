@@ -1,29 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://b66msut7c8v70"]
+[gd_scene load_steps=10 format=3 uid="uid://b66msut7c8v70"]
 
+[ext_resource type="Script" uid="uid://d0hjd3h1ms6b0" path="res://root.gd" id="1_bf3um"]
 [ext_resource type="Texture2D" uid="uid://cgpglbayw5nnk" path="res://icon.svg" id="1_vvh5c"]
 [ext_resource type="Script" uid="uid://cbuotih4v1bw2" path="res://icon.gd" id="2_28aoi"]
 [ext_resource type="PackedScene" uid="uid://c7ujm3f6w2g07" path="res://paddle.tscn" id="3_jnlp7"]
+[ext_resource type="Script" uid="uid://dx0g0sec2e3mh" path="res://paddle.gd" id="4_28aoi"]
+[ext_resource type="PackedScene" uid="uid://b73523ncwdktd" path="res://ball.tscn" id="5_jnlp7"]
+[ext_resource type="Script" uid="uid://1qf06guvih8f" path="res://ball.gd" id="6_l8v81"]
+[ext_resource type="Script" uid="uid://de5elqbw1wcn3" path="res://start_button.gd" id="7_vyht1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0e48y"]
 font_size = 20
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vvh5c"]
-friction = 0.0
-bounce = 1.0
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_28aoi"]
-friction = 0.0
-bounce = 1.0
-
 [node name="Root" type="Node2D"]
+script = ExtResource("1_bf3um")
 
 [node name="Title" type="Label" parent="."]
-offset_left = 255.0
-offset_top = 11.0
-offset_right = 431.0
-offset_bottom = 39.0
+offset_left = 941.0
+offset_top = 33.0
+offset_right = 1117.0
+offset_bottom = 61.0
 text = "This is some label!"
 label_settings = SubResource("LabelSettings_0e48y")
+metadata/_edit_use_anchors_ = true
 
 [node name="Icon" type="Sprite2D" parent="Title"]
 position = Vector2(89, 106)
@@ -31,9 +30,32 @@ texture = ExtResource("1_vvh5c")
 script = ExtResource("2_28aoi")
 
 [node name="paddle0" parent="." instance=ExtResource("3_jnlp7")]
-position = Vector2(620, 230)
-physics_material_override = SubResource("PhysicsMaterial_vvh5c")
+position = Vector2(1960, 778)
+scale = Vector2(4, 4)
+script = ExtResource("4_28aoi")
+movement_speed = 300.0
 
 [node name="paddle1" parent="." instance=ExtResource("3_jnlp7")]
-position = Vector2(20, 230)
-physics_material_override = SubResource("PhysicsMaterial_28aoi")
+position = Vector2(92, 778)
+scale = Vector2(4, 4)
+
+[node name="Ball" parent="." instance=ExtResource("5_jnlp7")]
+position = Vector2(1043, 778)
+scale = Vector2(4, 4)
+script = ExtResource("6_l8v81")
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 941.0
+offset_top = 223.99998
+offset_right = 1020.0
+offset_bottom = 254.99998
+scale = Vector2(2.3529553, 2.3160932)
+text = "Start Ball"
+script = ExtResource("7_vyht1")
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="StartButton"]
+autostart = true
+
+[connection signal="body_entered" from="paddle0" to="Ball" method="_on_paddle_0_body_entered"]
+[connection signal="pressed" from="StartButton" to="Ball" method="_on_start_button_pressed"]

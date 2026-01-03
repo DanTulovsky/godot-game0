@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var angular_speed: float = 20
 @export var speed: float = 1000
+@export var max_speed: float = 10000
 @export var speed_increase_rate: float = 10 # Speed increase per second
 @export var paddle_influence: float = 0.3 # Controls how much paddle movement affects the ball's bounce
 
@@ -44,6 +45,7 @@ func start():
 func _physics_process(delta):
 	# Increase speed over time
 	current_speed += speed_increase_rate * delta
+	current_speed = clamp(current_speed, 0, max_speed)
 
 	var collision = move_and_collide(velocity * delta)
 

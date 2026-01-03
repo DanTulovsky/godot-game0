@@ -32,13 +32,13 @@ script = ExtResource("2_28aoi")
 
 [node name="paddle0" parent="." groups=["paddles"] instance=ExtResource("3_jnlp7")]
 position = Vector2(1960, 778)
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 script = ExtResource("4_28aoi")
 is_player = true
 
 [node name="paddle1" parent="." groups=["paddles"] instance=ExtResource("3_jnlp7")]
 position = Vector2(92, 778)
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 script = ExtResource("4_28aoi")
 
 [node name="Ball" parent="." instance=ExtResource("5_jnlp7")]

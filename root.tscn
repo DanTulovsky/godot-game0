@@ -33,11 +33,12 @@ script = ExtResource("2_28aoi")
 position = Vector2(1960, 778)
 scale = Vector2(4, 4)
 script = ExtResource("4_28aoi")
-movement_speed = 300.0
+is_player = true
 
 [node name="paddle1" parent="." instance=ExtResource("3_jnlp7")]
 position = Vector2(92, 778)
 scale = Vector2(4, 4)
+script = ExtResource("4_28aoi")
 
 [node name="Ball" parent="." instance=ExtResource("5_jnlp7")]
 position = Vector2(1043, 778)
@@ -57,5 +58,6 @@ metadata/_edit_use_anchors_ = true
 [node name="Timer" type="Timer" parent="StartButton"]
 autostart = true
 
-[connection signal="body_entered" from="paddle0" to="Ball" method="_on_paddle_0_body_entered"]
+[connection signal="body_shape_entered" from="paddle0" to="Ball" method="_on_paddle_body_shape_entered"]
+[connection signal="body_shape_entered" from="paddle1" to="Ball" method="_on_paddle_body_shape_entered"]
 [connection signal="pressed" from="StartButton" to="Ball" method="_on_start_button_pressed"]

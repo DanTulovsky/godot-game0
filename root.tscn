@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b66msut7c8v70"]
+[gd_scene load_steps=11 format=3 uid="uid://b66msut7c8v70"]
 
 [ext_resource type="Script" uid="uid://d0hjd3h1ms6b0" path="res://root.gd" id="1_bf3um"]
 [ext_resource type="Texture2D" uid="uid://cgpglbayw5nnk" path="res://icon.svg" id="1_vvh5c"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b73523ncwdktd" path="res://ball.tscn" id="5_jnlp7"]
 [ext_resource type="Script" uid="uid://1qf06guvih8f" path="res://ball.gd" id="6_l8v81"]
 [ext_resource type="Script" uid="uid://de5elqbw1wcn3" path="res://start_button.gd" id="7_vyht1"]
+[ext_resource type="PackedScene" uid="uid://cdux3qd5cklf6" path="res://wall.tscn" id="9_huihk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0e48y"]
 font_size = 20
@@ -42,7 +43,6 @@ script = ExtResource("4_28aoi")
 
 [node name="Ball" parent="." instance=ExtResource("5_jnlp7")]
 position = Vector2(1043, 778)
-scale = Vector2(4, 4)
 script = ExtResource("6_l8v81")
 
 [node name="StartButton" type="Button" parent="."]
@@ -57,5 +57,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="StartButton"]
 autostart = true
+
+[node name="BottomWall" parent="." instance=ExtResource("9_huihk")]
+position = Vector2(0, 1560)
+
+[node name="TopWall" parent="." instance=ExtResource("9_huihk")]
 
 [connection signal="pressed" from="StartButton" to="Ball" method="_on_start_button_pressed"]

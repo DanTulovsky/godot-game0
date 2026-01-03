@@ -9,9 +9,12 @@ radius = 20.0
 motion_mode = 1
 wall_min_slide_angle = 0.0
 
+[node name="Ball2" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_x8fbi")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cbx31")
 
-[node name="Ball2" type="Sprite2D" parent="CollisionShape2D"]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_x8fbi")
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-20, -20, 40, 40)

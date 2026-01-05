@@ -27,6 +27,7 @@ func _on_quit_confirmed() -> void:
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 	get_tree().quit(0)
 
+
 func set_theme_params() -> void:
 	# Set font size for Window class title (affects "Please Confirm..." text)
 	theme.set_font_size("title_font_size", "Window", 24)

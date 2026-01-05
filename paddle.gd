@@ -22,6 +22,7 @@ func _ready():
 		ai_rotation_change_timer = randf_range(1.0, 3.0)
 		ai_target_rotation_direction = randf_range(-1.0, 1.0)
 
+
 func _physics_process(delta):
 	if is_player:
 		var direction = 0
@@ -66,7 +67,6 @@ func _physics_process(delta):
 		else:
 			# No ball found, stop moving
 			velocity.y = 0
-
 
 	# Use move_and_slide() - paddles won't be pushed by the ball
 	move_and_slide()

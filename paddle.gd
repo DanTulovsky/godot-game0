@@ -1,8 +1,11 @@
 extends CharacterBody2D
 
+@export_group("Speed")
 @export var speed: float = 650.0
-@export var is_player: bool = false
 @export var rotation_speed: float = 1.5
+
+@export_group("Misc")
+@export var is_player: bool = false
 
 var rotation_direction: float = 0.0
 var screen_size: Vector2
@@ -50,7 +53,7 @@ func _physics_process(delta):
 
 			# Calculate velocity proportional to distance for smooth movement
 			# This creates smooth acceleration and deceleration
-			var target_velocity = difference * 2.0  # Adjust multiplier for responsiveness
+			var target_velocity = difference * 2.0 # Adjust multiplier for responsiveness
 			velocity.y = clamp(target_velocity, -speed, speed)
 
 			# AI: Smooth random rotation

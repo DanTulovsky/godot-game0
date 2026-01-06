@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch36guisgumx6"]
+[gd_scene load_steps=7 format=3 uid="uid://ch36guisgumx6"]
 
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/themes/FlatUI4/kenneyUI.tres" id="1_y7k74"]
+[ext_resource type="Script" uid="uid://bsyklq2q1cgjg" path="res://title.gd" id="2_oyqm6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y7k74"]
 font_size = 48
@@ -30,6 +31,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_y7k74")
+script = ExtResource("2_oyqm6")
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 1
@@ -60,7 +62,12 @@ bbcode_enabled = true
 text = "PO[color=green]N[/color]G"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="AspectRatioContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="AspectRatioContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -73,6 +80,11 @@ theme_override_font_sizes/font_size = 90
 text = "Start"
 icon = SubResource("NoiseTexture2D_kpexm")
 metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="AspectRatioContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
 
 [node name="FoldableContainer" type="FoldableContainer" parent="AspectRatioContainer"]
 layout_mode = 2
@@ -106,3 +118,6 @@ color = Color(0.44515556, 0.7473416, 0.9787448, 1)
 layout_mode = 2
 placeholder_text = "Type some text here..."
 alignment = 1
+
+[connection signal="scene_loaded" from="." to="." method="_on_scene_loaded"]
+[connection signal="pressed" from="AspectRatioContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

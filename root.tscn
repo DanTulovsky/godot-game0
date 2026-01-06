@@ -51,6 +51,10 @@ amount = 20
 lifetime = 10.0
 process_material = SubResource("ParticleProcessMaterial_vyht1")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+drag_horizontal_enabled = true
+
 [connection signal="pressed" from="HUDLayer/StartButton" to="Ball" method="_on_start_button_pressed"]
 
 [editable path="HUDLayer"]

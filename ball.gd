@@ -19,7 +19,7 @@ func _on_screen_exited():
 	print("screen exited")
 	position = get_viewport_rect().get_center()
 	velocity = Vector2.ZERO
-	current_speed = speed  # Reset speed to default
+	current_speed = speed # Reset speed to default
 	set_physics_process(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,8 +36,8 @@ func _unhandled_key_input(event: InputEvent):
 		start()
 
 func start():
-	var direction_skew: float  = 100
-	current_speed = speed  # Initialize current speed to default
+	var direction_skew: float = 100
+	current_speed = speed # Initialize current speed to default
 	velocity = Vector2(current_speed, direction_skew)
 	set_process(true)
 	set_physics_process(true)
@@ -57,7 +57,7 @@ func _physics_process(delta):
 			# Add some of the paddle's velocity to influence angle
 			velocity = velocity.bounce(collision.get_normal())
 			velocity.y += collider.velocity.y * paddle_influence
-			velocity = velocity.normalized() * current_speed  # Maintain current speed
+			velocity = velocity.normalized() * current_speed # Maintain current speed
 		else:
 			# Normal bounce for walls
 			velocity = velocity.bounce(collision.get_normal())

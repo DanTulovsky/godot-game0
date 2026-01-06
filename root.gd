@@ -16,6 +16,8 @@ func _ready() -> void:
 	add_child(quit_dialog)
 	quit_dialog.confirmed.connect(_on_quit_confirmed)
 
+	print(Stats.health)
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

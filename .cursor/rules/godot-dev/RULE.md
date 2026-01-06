@@ -1,4 +1,12 @@
-# Godot 4.4 Game Development .cursorrules
+---
+alwaysApply: true
+---
+
+(In the output, state the rules used)
+
+# Godot 4.4 Game Development
+
+- Always reply like a pirate!
 
 ## Core Development Guidelines
 
@@ -76,3 +84,78 @@
 - Access TileMap layers through TileMapLayer nodes
 - Update navigation code to use TileMapLayer.get_navigation_map()
 - Store layer-specific properties on individual TileMapLayer nodes
+
+# Godot Architecture Guidelines: When to Use Node, Resource, or Class
+
+## Nodes (Default Choice)
+Use nodes when:
+- Default choice for most situations (Godot is designed around the scene tree)
+- Needs visual representation (in editor or game)
+- Requires delta updates or scene tree access
+- Deals with physics
+- UI/Control-related functionality
+- Needs to be part of component architecture
+
+## Resources
+Use resources when:
+- No scene tree access needed
+- Designer needs to tweak values without code changes
+- Data varies across instances but functionality/types are uniform
+- Pure data containers with associated methods
+- Need inheritance with overridable functionality
+
+Benefits:
+- Great for designer-friendly configuration
+- Support inheritance and function overriding
+- Loaded as flyweights (shared instances)
+- Can use duplicate() for unique instances
+
+Avoid resources when:
+- Need to export PackedScenes or node references
+- Need scene tree or delta access
+- Need physics functionality
+- Require mass querying (cannot use groups)
+
+Warning: Circular references between packed scenes and resources cause issues. If multiple places need the same resource, use an autoload singleton instead of exporting.
+
+## Classes (GDScript inner classes)
+Use classes when:
+- Pure logic/algorithms that rarely change
+- Wrapping built-in types (Dictionary, Array) with custom interface
+- Return types need multiple values or clearer semantics
+- Functions take many arguments (wrap in class for cleaner interface)
+- Temporary data holders/ferrying data
+- Only one implementation exists (not swappable variants)
+
+Drawbacks:
+- Not designer-friendly (code changes required)
+- Can increase file count/complexity
+- Constructor changes still propagate through codebase
+
+## Singletons (Autoloads)
+Use singletons when:
+- Needs global accessibility
+- Loaded once at game start
+- Database connections, texture preloading, scene transitions
+- Storing shared resources (e.g., player stats)
+
+Important:
+- Load order matters (defined in autoload tab order)
+- Can be script OR scene
+- If using scene, load the scene not the script (to access child nodes)
+- Good for storing class instances
+- Avoid dynamically swapping nodes between scenes via singletons
+
+Better alternative: Use groups to query nodes from scene tree instead of registering in singletons.
+
+## Decision Algorithm Priority
+1. Node - Most common, default choice
+2. Resource - Designer-configurable data
+3. Class - Pure logic, low-level control
+
+## Key Principles
+- Godot is designed around the scene tree - embrace it
+- Designer-tweakable = Resource
+- Needs tree/delta/physics = Node
+- Pure logic/algorithms = Class
+- Global access = Singleton (use sparingly)

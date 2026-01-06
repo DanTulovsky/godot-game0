@@ -26,19 +26,19 @@ hue_variation_max = 0.99999994
 script = ExtResource("1_bf3um")
 
 [node name="paddle0" parent="." groups=["paddles"] instance=ExtResource("3_jnlp7")]
-position = Vector2(1960, 778)
+position = Vector2(1844, 534)
 scale = Vector2(2, 2)
 is_player = true
 
 [node name="paddle1" parent="." groups=["paddles"] instance=ExtResource("3_jnlp7")]
-position = Vector2(92, 778)
+position = Vector2(92, 535)
 scale = Vector2(2, 2)
 
 [node name="Ball" parent="." instance=ExtResource("5_jnlp7")]
-position = Vector2(1043, 778)
+position = Vector2(1043, 535)
 
 [node name="BottomWall" parent="." instance=ExtResource("9_huihk")]
-position = Vector2(0, 1560)
+position = Vector2(0, 1082)
 
 [node name="TopWall" parent="." instance=ExtResource("9_huihk")]
 

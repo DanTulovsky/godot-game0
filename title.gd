@@ -26,17 +26,18 @@ func _process(delta: float):
 	var progress = []
 	var status = ResourceLoader.load_threaded_get_status(path, progress)
 
-	if status == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS:
-		progress_value = progress[0] * 100
-		progress_bar.value = move_toward(progress_bar.value, progress_value, delta * 20)
+	match status:
+		ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS:
+			progress_value = progress[0] * 100
+			progress_bar.value = move_toward(progress_bar.value, progress_value, delta * 20)
 
-	if status == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
-		# zip the progress bar to 100% so we don't get weird visuals
-		progress_bar.value = move_toward(progress_bar.value, 100.0, delta * 150)
+		ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
+			# zip the progress bar to 100% so we don't get weird visuals
+			progress_bar.value = move_toward(progress_bar.value, 100.0, delta * 150)
 
-		# "done" loading :)
-		if progress_bar.value >= 99:
-			scene_loaded.emit(path)
+			# "done" loading :)
+			if progress_bar.value >= 99:
+				scene_loaded.emit(path)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

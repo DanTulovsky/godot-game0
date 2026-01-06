@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch36guisgumx6"]
+[gd_scene load_steps=11 format=3 uid="uid://ch36guisgumx6"]
 
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://assets/themes/FlatUI4/kenneyUI.tres" id="1_y7k74"]
 [ext_resource type="Script" uid="uid://bsyklq2q1cgjg" path="res://title.gd" id="2_oyqm6"]
+[ext_resource type="PackedScene" uid="uid://csm62mrcitauk" path="res://orc.tscn" id="3_kpexm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y7k74"]
 font_size = 48
@@ -22,6 +23,19 @@ height = 70
 generate_mipmaps = false
 noise = SubResource("FastNoiseLite_oyqm6")
 color_ramp = SubResource("Gradient_y7k74")
+
+[sub_resource type="Animation" id="Animation_oyqm6"]
+resource_name = "title0"
+length = 10.0
+
+[sub_resource type="Animation" id="Animation_kpexm"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oyqm6"]
+_data = {
+&"RESET": SubResource("Animation_kpexm"),
+&"title0": SubResource("Animation_oyqm6")
+}
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -66,6 +80,10 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="Orc" parent="AspectRatioContainer/VBoxContainer" instance=ExtResource("3_kpexm")]
+position = Vector2(243, -56)
+scale = Vector2(5, 5)
 
 [node name="Button" type="Button" parent="AspectRatioContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
@@ -118,6 +136,12 @@ color = Color(0.44515556, 0.7473416, 0.9787448, 1)
 layout_mode = 2
 placeholder_text = "Type some text here..."
 alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_oyqm6")
+}
+autoplay = "title0"
 
 [connection signal="scene_loaded" from="." to="." method="_on_scene_loaded"]
 [connection signal="pressed" from="AspectRatioContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

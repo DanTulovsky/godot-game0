@@ -3,7 +3,6 @@ extends Node2D
 var quit_dialog: ConfirmationDialog
 var theme: Theme = Theme.new()
 
-
 func _ready() -> void:
 	quit_dialog = ConfirmationDialog.new()
 	quit_dialog.dialog_text = "Are you sure you want to quit?"

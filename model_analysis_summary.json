@@ -1,0 +1,60 @@
+{
+  "model_info": {
+    "model_path": "models/GameModel.onnx",
+    "file_size_mb": 0.019239425659179688,
+    "ir_version": 8,
+    "producer_name": "pytorch",
+    "producer_version": "2.8.0",
+    "domain": "",
+    "model_version": 0,
+    "doc_string": "N/A",
+    "estimated_parameters": 4610,
+    "estimated_parameters_millions": 0.00461
+  },
+  "inputs": [
+    {
+      "name": "obs",
+      "shape": "[batch_size, 4]",
+      "data_type": "FLOAT",
+      "description": "N/A"
+    },
+    {
+      "name": "state_ins",
+      "shape": "[batch_size]",
+      "data_type": "FLOAT",
+      "description": "N/A"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "output",
+      "shape": "[batch_size, 2]",
+      "data_type": "FLOAT",
+      "description": "N/A"
+    },
+    {
+      "name": "state_outs",
+      "shape": "[batch_size]",
+      "data_type": "FLOAT",
+      "description": "N/A"
+    }
+  ],
+  "graph_analysis": {
+    "total_nodes": 8,
+    "total_edges": 6,
+    "graph_depth": "6",
+    "unique_operators": 5,
+    "operator_counts": {
+      "Flatten": 1,
+      "Concat": 1,
+      "Gemm": 3,
+      "Tanh": 2,
+      "Identity": 1
+    }
+  },
+  "memory_metrics": {
+    "file_size_mb": 0.019239425659179688,
+    "weights_size_mb": 0.01758575439453125,
+    "complexity_score": 111.75857543945312
+  }
+}

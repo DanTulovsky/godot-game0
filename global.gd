@@ -1,6 +1,8 @@
 extends Node
 
 const ROOT_SCENE: String = "res://root.tscn"
+const CONFIG = preload("res://game_config.tres")
+
 var current_scene: Node = null
 
 # Called when the node enters the scene tree for the first time.

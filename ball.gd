@@ -8,19 +8,29 @@ extends CharacterBody2D
 
 var current_speed: float
 
+signal game_over
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process(false)
 	add_to_group("ball")
 	$VisibleOnScreenNotifier2D.screen_exited.connect(_on_screen_exited)
 
+	if Global.CONFIG.auto_start:
+		start()
+
 
 func _on_screen_exited():
-	print("screen exited")
+	game_over.emit()
+	reset()
+
+func reset():
 	position = get_viewport_rect().get_center()
 	velocity = Vector2.ZERO
 	current_speed = speed # Reset speed to default
 	set_physics_process(false)
+	if Global.CONFIG.auto_start:
+		start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # func _process(delta):
@@ -51,17 +61,27 @@ func _physics_process(delta):
 
 	if collision:
 		var collider = collision.get_collider()
+		var normal = collision.get_normal()
+		var remainder = collision.get_remainder()
+
 		play_collision_sound()
 
 		if collider.is_in_group("paddles"):
+			# Bounce velocity off the paddle
+			velocity = velocity.bounce(normal)
 			# Add some of the paddle's velocity to influence angle
-			velocity = velocity.bounce(collision.get_normal())
 			velocity.y += collider.velocity.y * paddle_influence
 			velocity = velocity.normalized() * current_speed # Maintain current speed
 		else:
 			# Normal bounce for walls
-			velocity = velocity.bounce(collision.get_normal())
+			velocity = velocity.bounce(normal)
 			velocity = velocity.normalized() * current_speed
+
+		# Continue movement with remaining motion in the new velocity direction
+		# This ensures the ball moves away from the surface in the same frame
+		var remaining_distance = remainder.length()
+		if remaining_distance > 0:
+			move_and_collide(velocity.normalized() * remaining_distance)
 
 func play_collision_sound():
 	$AudioStreamPlayer2D.play()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7ujm3f6w2g07"]
+[gd_scene load_steps=6 format=3 uid="uid://c7ujm3f6w2g07"]
 
 [ext_resource type="Script" uid="uid://dx0g0sec2e3mh" path="res://paddle.gd" id="1_0sbc1"]
+[ext_resource type="Script" uid="uid://bp0wi5s6tjkfc" path="res://controller.gd" id="2_tbytw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ut3sq"]
 size = Vector2(10, 100)
@@ -22,3 +23,8 @@ shape = SubResource("RectangleShape2D_ut3sq")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 texture = SubResource("NoiseTexture2D_0sbc1")
+
+[node name="AIController2D" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_tbytw")
+metadata/_custom_type_script = "uid://mjinlgrr4m1v"

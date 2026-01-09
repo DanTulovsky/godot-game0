@@ -16,14 +16,12 @@ var ball: CharacterBody2D
 var ai_target_rotation_direction: float = 0.0
 var ai_rotation_change_timer: float = 0.0
 var last_collision_frame: int = -1 # Track last collision frame to avoid duplicate rewards
-var initial_x_position: float = 0.0
 var paddle_height: float = 200.0 # 100 pixels * 2x scale
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
-	initial_x_position = position.x
 	# Find the ball node using the "ball" group
 	ball = get_tree().get_first_node_in_group("ball") as CharacterBody2D
 	if not ball:
@@ -62,7 +60,6 @@ func _physics_process(delta):
 
 	# Lock horizontal movement - prevent paddle from drifting horizontally
 	velocity.x = 0.0
-	position.x = initial_x_position
 
 	# Use move_and_slide() - paddles won't be pushed by the ball
 	move_and_slide()
